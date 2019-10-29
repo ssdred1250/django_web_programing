@@ -1,15 +1,15 @@
- ####장고 설치
+ ###1. 장고 설치
  ```pip install django```
- #####데이터베이스 생성 및 적용
+ ####2. 데이터베이스 생성 및 적용
  ```python manage.py migrate```
- ####개발 서버 실행
+ ###3. 개발 서버 실행
  ```python manage.py runserver```
- ####관리자 계정 생성
+ ###4. 관리자 계정 생성
  ```python manage.py createsuperuser```
- ####앱 설치
+ ###5. 앱 설치
  ```python manage.py startapp hello```
  
- ####hello/views.py
+ ###hello/views.py
  컨트롤러
  ```
 from django.http import HttpResponse
@@ -18,7 +18,7 @@ def hello_world(request):
     return HttpResponse("Hello World!")
 ```
 
-####hello/urls.py
+###hello/urls.py
 ```
 from django.urls import path
 from .views import hello_world
@@ -28,7 +28,7 @@ urlpatterns = [
 ]
 ```
 
-####config/urls.py
+###config/urls.py
 ```
 from django.contrib import admin
 from django.urls import path, include
@@ -39,7 +39,8 @@ urlpatterns = [
 ]
 ```
 
-/hello_world/ \
+###순서
+/hello_world/ - url \
 config/urls.py \
 hello/urls.py \
 hello/views.py

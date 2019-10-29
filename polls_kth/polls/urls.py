@@ -3,8 +3,9 @@ from .views import *
 
 
 urlpatterns = [
-    path('', index, name='index'),
-    path('<int:question_id>/', detail, name='detail'),
-    path('<int:question_id>/result', result, name='result'),
-    path('<int:question_id>/vote', vote, name='vote')
+    path('', IndexView.as_view(), name='index'),
+    path('<int:pk>/', DetailView.as_view(), name='detail'),
+    path('<int:pk>/result', ResultView.as_view(), name='result'),
+    path('<int:pk>/vote', vote, name='vote'),
+    path('api/', ApiQuestionList.as_view(), name='api_list')
 ]

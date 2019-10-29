@@ -1,23 +1,31 @@
 from django.shortcuts import render, get_object_or_404, get_list_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from .models import *
+from django.views import generic
+from rest_framework.generics import ListCreateAPIView
+from .serializers import *
 
 
-def index(request):
-    latest_question_list = Question.objects.order_by('pub_data')
-    context = {'latest_question_list': latest_question_list}
+class IndexView(generic.ListView):
+    template_name = 'polls/index.html'
+    context_object_name = 'latest_question_list'
 
-    return render(request, 'polls/index.html', context)
-
-
-def detail(request, question_id):
-    question = get_object_or_404(Question, pk=question_id)
-
-    return render(request, 'polls/detail.html', {'question': question})
+    def get_queryset(self):
+        return Question.objects.order_by('pub_data')
 
 
-def vote(request, question_id):
-    question = get_object_or_404(Question, pk=question_id)
+class DetailView(generic.DetailView):
+    model = Question
+    template_name = 'polls/detail.html'
+
+
+class ResultView(generic.DetailView):
+    model = Question
+    template_name = 'polls/result.html'
+
+
+def vote(request, pk):
+    question = get_object_or_404(Question, pk=pk)
     choice = question.choice_set.get(pk=request.POST['choice'])
 
     choice.votes += 1
@@ -26,9 +34,9 @@ def vote(request, question_id):
     return HttpResponseRedirect('result')
 
 
-def result(request, question_id):
-    question = get_object_or_404(Question, pk=question_id)
+class ApiQuestionList(ListCreateAPIView):
+    queryset = Question.objects.all()
+    serializer_class = QuestionSerializer
 
-    return render(request, 'polls/result.html', {'question': question})
 
 
