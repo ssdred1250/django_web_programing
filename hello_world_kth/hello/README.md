@@ -1,4 +1,4 @@
- ###1. 장고 설치
+ ##1. 장고 설치
  ```pip install django```
  ####2. 데이터베이스 생성 및 적용
  ```python manage.py migrate```
