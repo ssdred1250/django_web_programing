@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from .models import Bookmark
+from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
+from .serializers import *
 
 
 class BookmarkList(ListView):
@@ -29,3 +31,13 @@ class BookmarkUpdate(UpdateView):
 class BookmarkDelete(DeleteView):
     model = Bookmark
     success_url = reverse_lazy('list')
+
+
+class APIBookmarkList(ListCreateAPIView):
+    queryset = Bookmark.objects.all()
+    serializer_class = BookmarkSerializer
+
+
+class APIBookmarkDetail(RetrieveUpdateDestroyAPIView):
+    queryset = Bookmark.objects.all()
+    serializer_class = BookmarkSerializer
