@@ -117,6 +117,25 @@ urlpatterns = [
     path('', IndexView.as_view(), name='index'),
 ]
 ```
+### 5. admin 페이지에서 vote 생성
+- polls/admin.py
+```
+from django.contrib import admin
+from .models import *
+
+
+class ChoiceInline(admin.TabularInline):
+    model = Choice
+    extra = 3
+
+
+class QuestionAdmin(admin.ModelAdmin):
+    inlines = [ChoiceInline]
+
+
+admin.site.register(Question, QuestionAdmin)
+```
+127.0.0.1:8000/admin 에서 투표 생성
 
 
 
