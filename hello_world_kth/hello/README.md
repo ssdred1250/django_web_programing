@@ -1,12 +1,14 @@
  ### 1. 장고 설치
  ```pip install django```
- ### 2. 데이터베이스 생성 및 적용
+ ### 2. 프로젝트 설치
+ ```django-admin startproject config .```
+ ### 3. 데이터베이스 생성 및 적용
  ```python manage.py migrate```
- ### 3. 개발 서버 실행
+ ### 4. 개발 서버 실행
  ```python manage.py runserver```
- ### 4. 관리자 계정 생성
+ ### 5. 관리자 계정 생성
  ```python manage.py createsuperuser```
- ### 5. 앱 설치
+ ### 6. 앱 설치
  ```python manage.py startapp hello```
  
  ### hello/views.py
