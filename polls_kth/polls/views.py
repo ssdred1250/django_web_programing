@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, get_list_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from .models import *
 from django.views import generic
-from rest_framework.generics import ListCreateAPIView
+from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from .serializers import *
 
 
@@ -37,6 +37,12 @@ def vote(request, pk):
 class ApiQuestionList(ListCreateAPIView):
     queryset = Question.objects.all()
     serializer_class = QuestionSerializer
+
+
+class ApiQuestionDetail(RetrieveUpdateDestroyAPIView):
+    queryset = Question.objects.all()
+    serializer_class = QuestionSerializer
+
 
 
 
