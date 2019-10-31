@@ -22,6 +22,15 @@ class WebtoonList(ListView):
     paginate_by = 40
 
 
+class Naver(ListView):
+    queryset = Webtoon.objects.filter(site_name='naver')
+    paginate_by = 40
+
+
+class Daum(ListView):
+    queryset = Webtoon.objects.filter(site_name='daum')
+    paginate_by = 40
+
 
 
 
