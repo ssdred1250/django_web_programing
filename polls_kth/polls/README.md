@@ -137,7 +137,9 @@ admin.site.register(Question, QuestionAdmin)
 ```
 127.0.0.1:8000/admin 에서 투표 생성
 
+
 ## 3. detail 페이지 만들기
+
 ### 3-1. view class 작성
 ```
 class DetailView(generic.DetailView):
