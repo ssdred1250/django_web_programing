@@ -7,17 +7,17 @@
  ```
  $ django-admin startproject config .
 ```
- config 폴더, manage.py 생성
+ 
  ### 3. 데이터베이스 생성 및 적용
  ```
  $ python manage.py migrate
 ```
-db.sqlite3 생성
+
  ### 4. 개발 서버 실행
  ```
  $ python manage.py runserver
 ```
-정상적으로 실행되는지 확
+
  ### 5. 관리자 계정 생성
  ```
  $ python manage.py createsuperuser
@@ -46,9 +46,9 @@ urlpatterns = [
 ...
 ]
 ```
- 
+ webtoon/urls.py 생성
  ## 2. index 페이지 만들기
- ### 1. model 작성
+ ### 2-1. model 작성
  - polls/models.py
  ```
 class Question(models.Model):
@@ -76,7 +76,7 @@ $ python manage.py makemigrations
 $ python manage.py migrate
 ```
 
- ### 2. view class 작성
+ ### 2-2. view class 작성
 - polls/view.py
  ```
 from django.views import generic
@@ -90,7 +90,7 @@ class IndexView(generic.ListView):
         return Question.objects.order_by('pub_data')
 ```
 
-### 3. template 작성
+### 2-3. template 작성
 - polls/templates/index.html - body
 ```
 {% if latest_question_list %}
@@ -106,7 +106,7 @@ class IndexView(generic.ListView):
 {% endif %}
 ```
 
-### 4. url 등록
+### 2-4. url 등록
 - polls/urls.py 생성
 ```
 from django.urls import path
@@ -117,7 +117,7 @@ urlpatterns = [
     path('', IndexView.as_view(), name='index'),
 ]
 ```
-### 5. admin 페이지에서 vote 생성
+### 2-5. admin 페이지에서 vote 생성
 - polls/admin.py
 ```
 from django.contrib import admin
@@ -136,6 +136,15 @@ class QuestionAdmin(admin.ModelAdmin):
 admin.site.register(Question, QuestionAdmin)
 ```
 127.0.0.1:8000/admin 에서 투표 생성
+
+## 3. detail 페이지 만들기
+### 3-1. view class 작성
+```
+class DetailView(generic.DetailView):
+    model = Question
+    template_name = 'polls/detail.html'
+```
+
 
 
 
