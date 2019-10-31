@@ -107,7 +107,7 @@ class IndexView(generic.ListView):
 ```
 
 ### 2-4. url 등록
-- polls/urls.py 생성
+- polls/urls.py 
 ```
 from django.urls import path
 from .views import *
