@@ -146,10 +146,33 @@ class DetailView(generic.DetailView):
     model = Question
     template_name = 'polls/detail.html'
 ```
+### 3-2. template 작성
+- polls/templates/index.html - body
+```
+ <h1>{{ question.question_text }}</h1>
+
+    <form action="/polls/{{ question.id }}/vote" method="post">
+        {% for choice in question.choice_set.all %}
+            <input type="radio" name="choice" value="{{ choice.id }}">{{ choice.choice_text }}<br>
+        {% endfor %}
+        <input type="submit" value="Vote">
+    </form>
+```
+### 3-3. url 등록
+- polls/urls.py 
+```
+from django.urls import path
+from .views import *
 
 
+urlpatterns = [
+...
+    path('<int:pk>/', DetailView.as_view(), name='detail'),
+...
+]
+```
 
-
+## 4. 
 
  
  
