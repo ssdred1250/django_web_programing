@@ -12,7 +12,7 @@
  ```
  $ python manage.py migrate
 ```
-
+db.sqlite3 생성
  ### 4. 개발 서버 실행
  ```
  $ python manage.py runserver
