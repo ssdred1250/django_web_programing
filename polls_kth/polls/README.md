@@ -79,10 +79,10 @@ $ python manage.py migrate
  ### 2-2. view class 작성
 - polls/view.py
  ```
-from django.views import generic
+from django.views.generic import ListView
 from .models import *
 
-class IndexView(generic.ListView):
+class IndexView(ListView):
     template_name = 'polls/index.html'
     context_object_name = 'latest_question_list'
 
@@ -142,7 +142,10 @@ admin.site.register(Question, QuestionAdmin)
 
 ### 3-1. view class 작성
 ```
-class DetailView(generic.DetailView):
+from django.views.generic import DetailView
+
+
+class DetailView(DetailView):
     model = Question
     template_name = 'polls/detail.html'
 ```

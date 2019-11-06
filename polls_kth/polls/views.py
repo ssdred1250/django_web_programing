@@ -1,11 +1,11 @@
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect
-from django.views import generic
+from django.views.generic import ListView, DetailView
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from .serializers import *
 
 
-class IndexView(generic.ListView):
+class IndexView(ListView):
     template_name = 'polls/index.html'
     context_object_name = 'latest_question_list'
 
@@ -13,12 +13,12 @@ class IndexView(generic.ListView):
         return Question.objects.order_by('pub_data')
 
 
-class DetailView(generic.DetailView):
+class DetailView(DetailView):
     model = Question
     template_name = 'polls/detail.html'
 
 
-class ResultView(generic.DetailView):
+class ResultView(DetailView):
     model = Question
     template_name = 'polls/result.html'
 
